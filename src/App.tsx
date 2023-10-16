@@ -1,25 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import { YMaps } from '@pbe/react-yandex-maps';
+import useWindowDimensions from './hooks/useWindowDimensions';
+import YaMap from './components/YaMap';
+  
 function App() {
+  const { height, width } = useWindowDimensions();
+  const API_KEY = "f4d6eefc-40f3-4387-bd4a-9e1bb6bd81da";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edi <code>src/App.tsx</code> andd save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <YMaps query={{apikey: API_KEY}}>
+        <YaMap />
+    </YMaps>
   );
 }
 
