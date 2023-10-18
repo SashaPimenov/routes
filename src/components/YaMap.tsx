@@ -4,25 +4,26 @@ import useWindowDimensions from '../hooks/useWindowDimensions';
 import { FullscreenControl } from '@pbe/react-yandex-maps';
 import { GeolocationControl } from '@pbe/react-yandex-maps';
 import { SearchControl } from '@pbe/react-yandex-maps';
-import { ZoomControl } from '@pbe/react-yandex-maps';
+import { ZoomControl, Placemark } from '@pbe/react-yandex-maps';
 
 function YaMap() {
   const { height, width } = useWindowDimensions();
-  const mapRef = useRef()
+  const [mapState, setMapState] = useState<any>({center: [60.4626680961914, 56.7711281543], zoom: 9});
+
   var options = {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0,
   };
-  function success(pos:any) {
+  const success = async(pos:any) => {
     var crd = pos.coords;
-    // if (mapRef.current) {
-    //     mapRef.current.setCenter([crd.latitude, crd.longitude])
-    // }
-    console.log("Your current position is:");
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
+    setMapState({center: [crd.latitude, crd.longitude], zoom: 9})
+    console.log(mapState);
+    
+    // console.log("Your current position is:");
+    // console.log(`Latitude : ${crd.latitude}`);
+    // console.log(`Longitude: ${crd.longitude}`);
+    // console.log(`More or less ${crd.accuracy} meters.`);
   }
 
   function errors(err:any) {
@@ -30,13 +31,16 @@ function YaMap() {
   }
 
   useEffect(() => {
+    setMapState({center: [59,31], zoom: 11})
+
     if (navigator.geolocation) {
       navigator.permissions
         .query({ name: "geolocation" })
         .then(function (result) {
-          console.log(result);
+          console.log('result' ,result);
           if (result.state === "granted") {
-            navigator.geolocation.getCurrentPosition(success, errors, options);
+            const a = navigator.geolocation.getCurrentPosition(success, errors, options);
+            console.log
           } else if (result.state === "prompt") {
             //If prompt then the user will be asked to give permission
             navigator.geolocation.getCurrentPosition(success, errors, options);
@@ -50,11 +54,12 @@ function YaMap() {
   }, []);
 
   return (
-    <Map width={width*0.8} height={height*0.8} state={{ center: [55.75, 37.57], zoom: 9 }}>
+    <Map width={width*0.8} height={height*0.8} defaultState={{ center: [55.75, 37.57], zoom: 9 }} state={mapState} >
         <FullscreenControl/>
         <GeolocationControl options={{ float: "left" }} />
         <SearchControl options={{ float: "right" }} />
         <ZoomControl options={{position: { right: 5, top: 50} }} />
+        <Placemark geometry={mapState.center} />
     </Map>
   );
 }
