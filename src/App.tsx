@@ -1,17 +1,31 @@
 import './App.css';
-import { YMaps } from '@pbe/react-yandex-maps';
-import useWindowDimensions from './hooks/useWindowDimensions';
-import YaMap from './components/YaMap';
-  
-function App() {
-  const { height, width } = useWindowDimensions();
-  const API_KEY = "f4d6eefc-40f3-4387-bd4a-9e1bb6bd81da";
+import {Outlet} from "react-router-dom";
 
-  return (
-    <YMaps query={{apikey: API_KEY}}>
-        <YaMap />
-    </YMaps>
-  );
+function App() {
+    return (
+        <div className='wrapper_root'>
+
+            <div>
+                <div className='sideBar'>
+                    <h1 style={{marginTop: 0}}>nav</h1>
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href={`/`}>map</a>
+                            </li>
+                            <li>
+                                <a href={`/login`}>login</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div className='main'>
+                <Outlet/>
+            </div>
+        </div>
+    )
+        ;
 }
 
 export default App;
