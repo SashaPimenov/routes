@@ -11,7 +11,7 @@ export default function MapPage() {
     return (
         <YMaps query={{apikey: API_KEY}}>
             <div className='input_map'>
-                <TextField id="outlined-basic" label="Поиск" variant="outlined" />
+                <TextField id="outlined-basic" fullWidth label="Поиск" variant="outlined" />
             </div>
             <YaMap/>
         </YMaps>
