@@ -19,7 +19,7 @@ function YaMap() {
     var crd = pos.coords;
     setMapState({center: [crd.latitude, crd.longitude], zoom: 9})
     console.log(mapState);
-    
+
     // console.log("Your current position is:");
     // console.log(`Latitude : ${crd.latitude}`);
     // console.log(`Longitude: ${crd.longitude}`);
@@ -40,7 +40,6 @@ function YaMap() {
           console.log('result' ,result);
           if (result.state === "granted") {
             const a = navigator.geolocation.getCurrentPosition(success, errors, options);
-            console.log
           } else if (result.state === "prompt") {
             //If prompt then the user will be asked to give permission
             navigator.geolocation.getCurrentPosition(success, errors, options);
