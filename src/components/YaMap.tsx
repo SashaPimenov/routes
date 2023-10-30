@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Map} from '@pbe/react-yandex-maps';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import { FullscreenControl } from '@pbe/react-yandex-maps';
@@ -10,14 +10,14 @@ function YaMap() {
   const { height, width } = useWindowDimensions();
   const [mapState, setMapState] = useState<any>({center: [60.4626680961914, 56.7711281543], zoom: 9});
 
-  var options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
-  };
-  const success = async(pos:any) => {
-    var crd = pos.coords;
-    setMapState({center: [crd.latitude, crd.longitude], zoom: 9})
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+    };
+    const success = async(pos:any) => {
+        const crd = pos.coords;
+        setMapState({center: [crd.latitude, crd.longitude], zoom: 9})
     console.log(mapState);
 
     // console.log("Your current position is:");
@@ -53,7 +53,7 @@ function YaMap() {
   }, []);
 
   return (
-    <Map width={width*0.8} height={height*0.8} defaultState={{ center: [55.75, 37.57], zoom: 9 }} state={mapState} >
+    <Map width={width} height={height*0.95} defaultState={{ center: [55.75, 37.57], zoom: 9 }} state={mapState} >
         <FullscreenControl/>
         <GeolocationControl options={{ float: "left" }} />
         <SearchControl options={{ float: "right" }} />

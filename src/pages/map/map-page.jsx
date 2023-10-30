@@ -2,6 +2,7 @@ import './map-page.css'
 import YaMap from "../../components/YaMap";
 import {YMaps} from "@pbe/react-yandex-maps";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import {TextField} from "@mui/material";
 
 export default function MapPage() {
     const {height, width} = useWindowDimensions();
@@ -9,6 +10,9 @@ export default function MapPage() {
 
     return (
         <YMaps query={{apikey: API_KEY}}>
+            <div className='input_map'>
+                <TextField id="outlined-basic" label="Поиск" variant="outlined" />
+            </div>
             <YaMap/>
         </YMaps>
     );

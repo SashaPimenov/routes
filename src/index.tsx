@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import LoginPage from "./pages/loginPage/login-page";
 import MapPage from "./pages/map/map-page";
+import MainPage from "./pages/mainPage/main-page";
 
 const router = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
+                element: <MainPage />
+            },
+            {
+                path: "/map",
                 element: <MapPage />
             },
             {
