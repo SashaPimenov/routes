@@ -45,10 +45,10 @@ export default function MainPage() {
             <div className="oneRouteDiv"></div>
             <div className="card">
               <div className="headerCard">
-                <p className="headerCardText">Питерская прогулка</p>
+                <p className="headerCardText">Ology</p>
               </div>
               <div className="footerCard">
-                <p className="footerCardText">Информация о м...</p>
+                <p className="footerCardText">Galant</p>
               </div>
             </div>
           </div>
@@ -68,23 +68,23 @@ export default function MainPage() {
         onSwiper={(swiper) => console.log(swiper)}
       >
         <SwiperSlide>
-          <div className="oneThematicRout"></div>
+            <div className="oneThematicRout"><p className="thematicRouteText"> Card title here</p></div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="oneThematicRout"></div>
+          <div className="oneThematicRout"><p className="thematicRouteText"> Card title here</p></div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="oneThematicRout"></div>
+          <div className="oneThematicRout"><p className="thematicRouteText"> Card title here</p></div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="oneThematicRout"></div>
+          <div className="oneThematicRout"><p className="thematicRouteText"> Card title here</p></div>
         </SwiperSlide>
       </Swiper>
 
       <div className="cardDiv">
         <p className="cardText">Популярные места</p>
         <div className="map">
-          <YaMap width="80vw" height="20vh" />
+          <YaMap width="90vw" height="20vh" />
         </div>
       </div>
     </div>
