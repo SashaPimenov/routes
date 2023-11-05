@@ -68,21 +68,34 @@ export default function MainPage() {
         onSwiper={(swiper) => console.log(swiper)}
       >
         <SwiperSlide>
-            <div className="oneThematicRout"><p className="thematicRouteText"> Card title here</p></div>
+          <div className="oneThematicRout">
+            <p className="thematicRouteText"> Card title here</p>
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="oneThematicRout"><p className="thematicRouteText"> Card title here</p></div>
+          <div className="oneThematicRout">
+            <p className="thematicRouteText"> Card title here</p>
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="oneThematicRout"><p className="thematicRouteText"> Card title here</p></div>
+          <div className="oneThematicRout">
+            <p className="thematicRouteText"> Card title here</p>
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="oneThematicRout"><p className="thematicRouteText"> Card title here</p></div>
+          <div className="oneThematicRout">
+            <p className="thematicRouteText"> Card title here</p>
+          </div>
         </SwiperSlide>
       </Swiper>
 
       <div className="cardDiv">
-        <p className="cardText">Популярные места</p>
+        <div className="thematicRoutesTextDiv">
+          <p className="thematicRoutesText">Популярные места</p>
+          <a href="/map">
+            <p className="thematicRoutesTextAll">Карта мест</p>
+          </a>
+        </div>
         <div className="map">
           <YaMap width="90vw" height="20vh" />
         </div>
