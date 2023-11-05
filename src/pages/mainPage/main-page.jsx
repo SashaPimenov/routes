@@ -6,10 +6,11 @@ import "./main-page.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import YaMap from "../../components/YaMap";
+
 export default function MainPage() {
   const top100Films = [{ title: "Крутые места", year: 1994 }];
   return (
-    <div className="wrapper_login">
+    <div className="wrapper_main">
       <div>
         <Stack>
           <Autocomplete
