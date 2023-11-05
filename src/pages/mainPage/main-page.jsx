@@ -2,11 +2,10 @@ import React from "react";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
 import "./main-page.css";
+import YaMap from "../../components/YaMap";
 
 export default function MainPage() {
-  const { height, width } = useWindowDimensions();
   const top100Films = [{ title: "Крутые места", year: 1994 }];
   return (
     <div className="wrapper_login">
@@ -65,7 +64,7 @@ export default function MainPage() {
       </div>
 
       <div className="cardDiv">
-        <p className="cardText">Популярные места</p>
+        <YaMap width={"95vw"} height={"10vh"} />
         <div className="card"></div>
       </div>
     </div>

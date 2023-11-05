@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Map } from "@pbe/react-yandex-maps";
-import useWindowDimensions from "../hooks/useWindowDimensions";
-import { FullscreenControl } from "@pbe/react-yandex-maps";
 import { GeolocationControl } from "@pbe/react-yandex-maps";
-import { SearchControl } from "@pbe/react-yandex-maps";
 import { ZoomControl, Placemark } from "@pbe/react-yandex-maps";
 
-function YaMap() {
-  const { height, width } = useWindowDimensions();
+interface IProp {
+  width: string;
+  height: string;
+}
+
+function YaMap({ width, height }: IProp) {
   const [mapState, setMapState] = useState<any>({
     center: [60.4626680961914, 56.7711281543],
     zoom: 9,
@@ -62,13 +63,11 @@ function YaMap() {
   return (
     <Map
       width={width}
-      height={height * 0.95}
+      height={height}
       defaultState={{ center: [55.75, 37.57], zoom: 9 }}
       state={mapState}
     >
-      <FullscreenControl />
       <GeolocationControl options={{ float: "left" }} />
-      <SearchControl options={{ float: "right" }} />
       <ZoomControl options={{ position: { right: 5, top: 50 } }} />
       <Placemark geometry={mapState.center} />
     </Map>
