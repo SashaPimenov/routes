@@ -3,9 +3,9 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import "./main-page.css";
-import YaMap from "../../components/YaMap";
 
 export default function MainPage() {
+  const { height, width } = useWindowDimensions();
   const top100Films = [{ title: "Крутые места", year: 1994 }];
   return (
     <div className="wrapper_login">
@@ -58,13 +58,29 @@ export default function MainPage() {
           <p className="thematicRoutesText">Тематические маршруты</p>
           <p className="thematicRoutesTextAll">Все</p>
         </div>
-        <div className="thematicRout">
-          <div className="oneThematicRout"></div>
-        </div>
       </div>
+      <Swiper
+        spaceBetween={10}
+        slidesPerView={2}
+        onSlideChange={() => console.log("slide change")}
+        onSwiper={(swiper) => console.log(swiper)}
+      >
+        <SwiperSlide>
+          <div className="oneThematicRout"></div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="oneThematicRout"></div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="oneThematicRout"></div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="oneThematicRout"></div>
+        </SwiperSlide>
+      </Swiper>
 
       <div className="cardDiv">
-        <YaMap width={"95vw"} height={"10vh"} />
+        <p className="cardText">Популярные места</p>
         <div className="card"></div>
       </div>
     </div>
