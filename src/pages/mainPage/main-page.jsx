@@ -83,8 +83,8 @@ export default function MainPage() {
 
       <div className="cardDiv">
         <p className="cardText">Популярные места</p>
-        <div className="card">
-          <YaMap width="90vw" height="20vh" />
+        <div className="map">
+          <YaMap width="80vw" height="20vh" />
         </div>
       </div>
     </div>
