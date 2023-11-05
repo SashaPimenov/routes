@@ -3,9 +3,10 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import "./main-page.css";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import YaMap from "../../components/YaMap";
 export default function MainPage() {
-  const { height, width } = useWindowDimensions();
   const top100Films = [{ title: "Крутые места", year: 1994 }];
   return (
     <div className="wrapper_login">
@@ -81,7 +82,9 @@ export default function MainPage() {
 
       <div className="cardDiv">
         <p className="cardText">Популярные места</p>
-        <div className="card"></div>
+        <div className="card">
+          <YaMap width="90vw" height="20vh" />
+        </div>
       </div>
     </div>
   );
