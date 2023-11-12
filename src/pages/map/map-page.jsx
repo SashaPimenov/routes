@@ -13,7 +13,7 @@ export default function MapPage() {
           variant="outlined"
         />
       </div>
-      <YaMap width={"100vw"} height={"100vh"} />
+      <YaMap width={"100vw"} height={"100vh"} zoomControl={true} />
     </>
   );
 }

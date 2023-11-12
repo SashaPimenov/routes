@@ -1,212 +1,224 @@
-import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
-import Autocomplete from "@mui/material/Autocomplete";
 import "./main-page.css";
-import {Swiper, SwiperSlide} from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import YaMap from "../../components/YaMap";
-import {Avatar, Button, IconButton, InputAdornment, InputBase, Paper} from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import MapIcon from '@mui/icons-material/Map';
+import { Avatar, Button, IconButton, InputBase, Paper } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import MapIcon from "@mui/icons-material/Map";
+import OneRoutComponent from "../../components/forMainPage/oneRoutComponent";
 
 export default function MainPage() {
-    const thematic = [
-        {
-            name: "Для свидания",
-            id: 1,
-        },
-        {
-            name: "Погулять",
-            id: 2,
-        },
-        {
-            name: "Для свидания",
-            id: 3,
-        },
-        {
-            name: "Для свидания",
-            id: 4,
-        },
-        {
-            name: "Для свидания",
-            id: 5,
-        },
-    ];
+  const thematic = [
+    {
+      name: "Для свидания",
+      id: 1,
+    },
+    {
+      name: "Погулять",
+      id: 2,
+    },
+    {
+      name: "Для свидания",
+      id: 3,
+    },
+    {
+      name: "Для свидания",
+      id: 4,
+    },
+    {
+      name: "Для свидания",
+      id: 5,
+    },
+  ];
 
-    const personality = [
-        {
-            title: "Семейный отдых на Плотинке",
-            description: "Лорем ипсум долор сит амет, консект",
-            id: 1,
-        },
-        {
-            title: "Маршрут по стрит-арту",
-            description: "Лорем ипсум долор сит амет, консект",
-            id: 2,
-        },
-        {
-            title: "Ology",
-            description: "Galant",
-            id: 3,
-        },
-        {
-            title: "Ology",
-            description: "Galant",
-            id: 4,
-        },
-        {
-            title: "Ology",
-            description: "Galant",
-            id: 5,
-        },
-    ];
+  const personality = [
+    {
+      title: "Семейный отдых на Плотинке",
+      description: "Лорем ипсум долор сит амет, консект",
+      id: 1,
+    },
+    {
+      title: "Маршрут по стрит-арту",
+      description: "Лорем ипсум долор сит амет, консект",
+      id: 2,
+    },
+    {
+      title: "Ology",
+      description: "Galant",
+      id: 3,
+    },
+    {
+      title: "Ology",
+      description: "Galant",
+      id: 4,
+    },
+    {
+      title: "Ology",
+      description: "Galant",
+      id: 5,
+    },
+  ];
 
-    function stringToColor(string) {
-        let hash = 0;
-        let i;
+  function stringToColor(string) {
+    let hash = 0;
+    let i;
 
-        /* eslint-disable no-bitwise */
-        for (i = 0; i < string.length; i += 1) {
-            hash = string.charCodeAt(i) + ((hash << 5) - hash);
-        }
-
-        let color = "#";
-
-        for (i = 0; i < 3; i += 1) {
-            const value = (hash >> (i * 8)) & 0xff;
-            color += `00${value.toString(16)}`.slice(-2);
-        }
-        /* eslint-enable no-bitwise */
-
-        return color;
+    /* eslint-disable no-bitwise */
+    for (i = 0; i < string.length; i += 1) {
+      hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
 
-    function stringAvatar(name) {
-        return {
-            sx: {bgcolor: stringToColor(name)},
-            children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
-        };
+    let color = "#";
+
+    for (i = 0; i < 3; i += 1) {
+      const value = (hash >> (i * 8)) & 0xff;
+      color += `00${value.toString(16)}`.slice(-2);
     }
+    /* eslint-enable no-bitwise */
 
-    const top100Films = [{title: "Прогулка по городу", id: 1}];
-    return (
-        <div className="wrapper_main">
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    flexWrap: "nowrap",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                }}
-            >
-                <Paper component="form"
-                       sx={{
-                           p: '2px 4px',
-                           display: 'flex',
-                           alignItems: 'center',
-                           width: 400,
-                           background: "rgba(236, 230, 240, 1)",
-                           boxShadow: "none",
-                           borderRadius: 28
-                       }}>
-                    <IconButton type="button" sx={{p: '10px'}} aria-label="search">
-                        <SearchIcon/>
-                    </IconButton>
-                    <InputBase
-                        sx={{ml: 1, flex: 1}}
-                        placeholder="Поиск по маршрутам"
-                    />
-                    <a href="profile" style={{textDecoration: "none", outline: "0"}}>
-                        <Avatar
-                            {...stringAvatar("Tim Neutkens")}
-                        />
-                    </a>
-                </Paper>
-            </div>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    gap: "8px",
-                }}
-            >
-                <div style={{display: "flex", flexDirection: "row", gap: 16}}>
-                    <p className="headerText">Личные маршруты</p>
-                    <Button variant="outlined" style={{width: 122, height: 32, alignSelf: "center", color:"rgba(103, 80, 164, 1)", borderColor: "rgba(103, 80, 164, 1)", borderRadius: 28, textTransform: 'none'}}>
-                        + Создать
-                    </Button>
-                </div>
+    return color;
+  }
 
-                <div className="headerDiv">
-                    <Swiper
-                        spaceBetween={20}
-                        slidesPerView={2}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
-                    >
-                        {personality.map((e, index) => (
-                            <SwiperSlide key={index}>
-                                <a
-                                    href={"personality/" + e.id}
-                                    style={{textDecoration: "none"}}
-                                >
-                                    <div className="oneRoute">
-                                        <div className="oneRouteDiv"></div>
-                                        <div className="card">
-                                            <div className="headerCard">
-                                                <p className="headerCardText">{e.title}</p>
-                                            </div>
-                                            <div className="footerCard">
-                                                <p className="footerCardText">{e.description}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                </div>
-            </div>
+  function stringAvatar(name) {
+    return {
+      sx: { bgcolor: stringToColor(name) },
+      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+    };
+  }
 
-            <div className="thematicRoutes">
-                <div className="thematicRoutesTextDiv">
-                    <p className="thematicRoutesText">Тематические маршруты</p>
-                    <a href="/allThematic" style={{textDecoration: "none", alignSelf: "center"}}>
-                        <ArrowForwardIcon style={{alignSelf: "center", color: "rgba(103, 80, 164, 1)"}}/>
-                    </a>
-                </div>
-            </div>
-            <Swiper
-                spaceBetween={10}
-                slidesPerView={2}
-                onSlideChange={() => console.log("slide change")}
-                onSwiper={(swiper) => console.log(swiper)}
-            >
-                {thematic.map((e, index) => (
-                    <SwiperSlide key={index}>
-                        <a href={"thematic/" + e.id} style={{textDecoration: "none"}}>
-                            <div className="oneThematicRout">
-                                <p className="thematicRouteText">{e.name}</p>
-                            </div>
-                        </a>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
-
-            <div className="cardDiv">
-                <div className="thematicRoutesTextDiv">
-                    <p className="thematicRoutesText">Популярные места</p>
-                </div>
-                <div className="map">
-                    <a href="/map" style={{position: "absolute", zIndex: 2, right: 0, marginRight: 26, marginTop: 9, textDecoration: "none", background: "white", padding: 19, borderRadius: 16}}>
-                        <MapIcon background/>
-                    </a>
-                    <YaMap width="90vw" height="25vh"/>
-                </div>
-            </div>
+  return (
+    <div className="wrapper_main">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "nowrap",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Paper
+          component="form"
+          sx={{
+            p: "2px 4px",
+            display: "flex",
+            alignItems: "center",
+            width: 400,
+            background: "rgba(236, 230, 240, 1)",
+            boxShadow: "none",
+            borderRadius: 28,
+          }}
+        >
+          <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+            <SearchIcon />
+          </IconButton>
+          <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Поиск по маршрутам" />
+          <a href="profile" style={{ textDecoration: "none", outline: "0" }}>
+            <Avatar {...stringAvatar("Tim Neutkens")} />
+          </a>
+        </Paper>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: "8px",
+        }}
+      >
+        <div style={{ display: "flex", flexDirection: "row", gap: 16 }}>
+          <p className="headerText">Личные маршруты</p>
+          <Button
+            variant="outlined"
+            style={{
+              width: 122,
+              height: 32,
+              alignSelf: "center",
+              color: "rgba(103, 80, 164, 1)",
+              borderColor: "rgba(103, 80, 164, 1)",
+              borderRadius: 28,
+              textTransform: "none",
+            }}
+          >
+            + Создать
+          </Button>
         </div>
-    );
+
+        <div className="headerDiv">
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={2}
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}
+          >
+            {personality.map((e, index) => (
+              <SwiperSlide key={index}>
+                <OneRoutComponent
+                  title={e.title}
+                  id={e.id}
+                  description={e.description}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
+
+      <div className="thematicRoutes">
+        <div className="thematicRoutesTextDiv">
+          <p className="thematicRoutesText">Тематические маршруты</p>
+          <a
+            href="/allThematic"
+            style={{ textDecoration: "none", alignSelf: "center" }}
+          >
+            <ArrowForwardIcon
+              style={{ alignSelf: "center", color: "rgba(103, 80, 164, 1)" }}
+            />
+          </a>
+        </div>
+      </div>
+      <Swiper
+        spaceBetween={10}
+        slidesPerView={2}
+        onSlideChange={() => console.log("slide change")}
+        onSwiper={(swiper) => console.log(swiper)}
+      >
+        {thematic.map((e, index) => (
+          <SwiperSlide key={index}>
+            <a href={"thematic/" + e.id} style={{ textDecoration: "none" }}>
+              <div className="oneThematicRout">
+                <p className="thematicRouteText">{e.name}</p>
+              </div>
+            </a>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      <div className="cardDiv">
+        <div className="thematicRoutesTextDiv">
+          <p className="thematicRoutesText">Популярные места</p>
+        </div>
+        <div className="map">
+          <a
+            href="/map"
+            style={{
+              position: "absolute",
+              zIndex: 2,
+              right: 0,
+              marginRight: 26,
+              marginTop: 9,
+              textDecoration: "none",
+              background: "white",
+              padding: 19,
+              borderRadius: 16,
+            }}
+          >
+            <MapIcon />
+          </a>
+          <YaMap width="90vw" height="25vh" ZoomControl={false} />
+        </div>
+      </div>
+    </div>
+  );
 }

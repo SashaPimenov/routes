@@ -6,9 +6,10 @@ import { ZoomControl, Placemark } from "@pbe/react-yandex-maps";
 interface IProp {
   width: string;
   height: string;
+  zoomControl: boolean;
 }
 
-function YaMap({ width, height }: IProp) {
+function YaMap({ width, height, zoomControl }: IProp) {
   const placemarkes = [
     <Placemark geometry={[56.849408169094694, 60.62560809884134]} key={1} />,
     <Placemark geometry={[56.849408169094694, 60.62560809884134]} key={2} />,
@@ -104,7 +105,9 @@ function YaMap({ width, height }: IProp) {
       state={mapState}
     >
       <GeolocationControl options={{ float: "left" }} />
-      <ZoomControl options={{ position: { right: 5, top: 50 } }} />
+      {zoomControl && (
+        <ZoomControl options={{ position: { right: 5, top: 50 } }} />
+      )}
       {placemarks}
     </Map>
   );

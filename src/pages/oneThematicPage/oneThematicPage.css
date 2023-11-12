@@ -1,0 +1,17 @@
+.titleText {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+.routesGridDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 20px;
+  justify-items: center;
+}
+
+.secondTitle {
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+}
