@@ -1,0 +1,19 @@
+.headerStyle {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.thematicInfoDiv {
+  background-color: brown;
+  height: 25%;
+}
+
+.ThematicHeaderTextDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
