@@ -11,9 +11,15 @@ export default function OneRoutComponent({ id, title, description }: IProp) {
     <>
       <a href={"personality/" + id} style={{ textDecoration: "none" }}>
         <div className="oneRoute">
-          <div className="oneRouteDiv"></div>
+          <div className="oneRouteDiv">
+              <img className={"oneRouteDivImage"} src={require("../../assets/ekb.jpg")}/>
+          </div>
           <div className="card">
             <div className="headerCard">
+              <div className={"characterRoute"}>
+                <div className={"routeTimeAndDistance mrouteTime"}>2 часа</div>
+                <div className={"routeTimeAndDistance routeDistance"}>10 км</div>
+              </div>
               <p className="headerCardText">{title}</p>
             </div>
             <div className="footerCard">

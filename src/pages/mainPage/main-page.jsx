@@ -7,6 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import MapIcon from "@mui/icons-material/Map";
 import OneRoutComponent from "../../components/forMainPage/oneRoutComponent";
+import AddIcon from '@mui/icons-material/Add';
 
 export default function MainPage() {
   const thematic = [
@@ -105,7 +106,7 @@ export default function MainPage() {
             display: "flex",
             alignItems: "center",
             width: 400,
-            background: "rgba(236, 230, 240, 1)",
+            background: "rgb(236, 230, 240)",
             boxShadow: "none",
             borderRadius: 28,
           }}
@@ -113,7 +114,7 @@ export default function MainPage() {
           <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
             <SearchIcon />
           </IconButton>
-          <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Поиск по маршрутам" />
+          <InputBase sx={{ ml: 1, flex: 1, color: "rgb(73, 69, 79)"}} placeholder="Поиск по маршрутам" />
           <a href="profile" style={{ textDecoration: "none", outline: "0" }}>
             <Avatar {...stringAvatar("Tim Neutkens")} />
           </a>
@@ -131,6 +132,7 @@ export default function MainPage() {
           <p className="headerText">Личные маршруты</p>
           <Button
             variant="outlined"
+            startIcon={<AddIcon />}
             style={{
               width: 122,
               height: 32,
@@ -141,7 +143,7 @@ export default function MainPage() {
               textTransform: "none",
             }}
           >
-            + Создать
+            Создать
           </Button>
         </div>
 
