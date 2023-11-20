@@ -98,3 +98,15 @@
   height: 136px;
   border-radius: 8px;
 }
+
+.mainMapIcon {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  margin-right: 26px;
+  margin-top: 9px;
+  padding: 15px;
+  text-decoration: none;
+  background-color: #6750a4;
+  border-radius: 16px;
+}

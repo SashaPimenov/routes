@@ -5,9 +5,9 @@ import YaMap from "../../components/YaMap";
 import { Avatar, Button, IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import MapIcon from "@mui/icons-material/Map";
 import OneRoutComponent from "../../components/forMainPage/oneRoutComponent";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
 export default function MainPage() {
   const thematic = [
@@ -114,7 +114,10 @@ export default function MainPage() {
           <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
             <SearchIcon />
           </IconButton>
-          <InputBase sx={{ ml: 1, flex: 1, color: "rgb(73, 69, 79)"}} placeholder="Поиск по маршрутам" />
+          <InputBase
+            sx={{ ml: 1, flex: 1, color: "rgb(73, 69, 79)" }}
+            placeholder="Поиск по маршрутам"
+          />
           <a href="profile" style={{ textDecoration: "none", outline: "0" }}>
             <Avatar {...stringAvatar("Tim Neutkens")} />
           </a>
@@ -202,23 +205,15 @@ export default function MainPage() {
           <p className="thematicRoutesText">Популярные места</p>
         </div>
         <div className="map">
-          <a
-            href="/map"
-            style={{
-              position: "absolute",
-              zIndex: 2,
-              right: 0,
-              marginRight: 26,
-              marginTop: 9,
-              textDecoration: "none",
-              background: "white",
-              padding: 19,
-              borderRadius: 16,
-            }}
-          >
-            <MapIcon />
+          <a href="/map" className="mainMapIcon">
+            <MapOutlinedIcon
+              sx={{
+                color: "white",
+              }}
+              fontSize="medium"
+            />
           </a>
-          <YaMap width="90vw" height="25vh" ZoomControl={false} />
+          <YaMap width="90vw" height="25vh" zoomControl={false} />
         </div>
       </div>
     </div>

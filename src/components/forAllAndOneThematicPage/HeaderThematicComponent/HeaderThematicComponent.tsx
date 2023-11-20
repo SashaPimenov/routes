@@ -39,9 +39,9 @@ export const HeaderThematicComponent = ({ route, label }: IProp) => {
   return (
     <div className="headerThematicDiv">
       <div style={{ flex: "0.1" }}>
-        <Link to={route}>
+        <a href={route}>
           <ArrowBackIcon className="arrowIcon" />
-        </Link>
+        </a>
       </div>
       <div style={{ flex: "0.8" }}>
         <p className="thematicHeaderText">{label}</p>

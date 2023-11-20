@@ -8,6 +8,7 @@ import AllThematicPage from "./pages/allThematicPage/allThematicPage";
 import OneThematicPage from "./pages/oneThematicPage/oneThematicPage";
 import OnePersonalityRoutePage from "./pages/onePersonalityRoutPage/onePersonalityRoutPage";
 import { OneRoutPage } from "./pages/oneRoutPage/oneRoutPage";
+import ProfilePage from "./pages/profilePage/profilePage";
 
 function App() {
   const API_KEY = "f4d6eefc-40f3-4387-bd4a-9e1bb6bd81da";
@@ -21,11 +22,8 @@ function App() {
             <Route path="login" element={<LoginPage />}></Route>
             <Route path="allthematic" element={<AllThematicPage />}></Route>
             <Route path="thematic/:id" element={<OneThematicPage />}></Route>
-            <Route
-              path="thematic/:id/route/:id"
-              element={<OneThematicPage />}
-            ></Route>
-            <Route path="profile" element={<OneRoutPage />}></Route>
+            <Route path="route/:id" element={<OneRoutPage />}></Route>
+            <Route path="profile" element={<ProfilePage />}></Route>
             <Route
               path="personality/:id"
               element={<OnePersonalityRoutePage />}
