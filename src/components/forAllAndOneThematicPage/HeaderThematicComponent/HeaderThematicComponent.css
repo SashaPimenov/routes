@@ -1,0 +1,18 @@
+.headerThematicDiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrowIcon {
+  align-self: center;
+  color: rgba(103, 80, 164, 1);
+}
+
+.thematicHeaderText {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+}

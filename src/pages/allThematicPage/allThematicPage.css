@@ -16,3 +16,10 @@
   flex-wrap: nowrap;
   justify-content: space-between;
 }
+
+.oneThematicMainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}

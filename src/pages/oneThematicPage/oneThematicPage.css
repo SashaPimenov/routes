@@ -7,6 +7,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   row-gap: 20px;
+  column-gap: 10px;
   justify-items: center;
 }
 
@@ -14,4 +15,19 @@
   text-align: left;
   font-size: 18px;
   font-weight: 600;
+}
+
+.nameAndFilterDiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filterDiv {
+  flex: 0.2;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

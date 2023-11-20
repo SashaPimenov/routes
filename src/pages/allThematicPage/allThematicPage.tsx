@@ -1,12 +1,11 @@
-import { Paper, IconButton, InputBase } from "@mui/material";
 import "./allThematicPage.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import OneRoutComponent from "../../components/forMainPage/oneRoutComponent";
-import SearchIcon from "@mui/icons-material/Search";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { MapIconComponent } from "../../components/forAllAndOneThematicPage/MapIconComponent/MapIconComponent";
+import { HeaderThematicComponent } from "../../components/forAllAndOneThematicPage/HeaderThematicComponent/HeaderThematicComponent";
 
 export default function AllThematicPage() {
-  const top100Films = [{ title: "Прогулка по городу", id: 1 }];
   const thematic = [
     {
       name: "Свидания",
@@ -37,54 +36,17 @@ export default function AllThematicPage() {
 
   return (
     <div className="wrapper_main">
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "nowrap",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <Paper
-          component="form"
-          sx={{
-            p: "2px 4px",
-            display: "flex",
-            alignItems: "center",
-            width: 400,
-            background: "rgba(236, 230, 240, 1)",
-            boxShadow: "none",
-            borderRadius: 28,
-          }}
-        >
-          <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-            <SearchIcon />
-          </IconButton>
-          <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Поиск по маршрутам" />
-        </Paper>
-        <p>фильтр</p>
-      </div>
+      <HeaderThematicComponent route={"/"} label={"Тематические маршруты"} />
 
       {thematic.map((element, index) => (
-        <div
-          key={index}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            gap: "8px",
-          }}
-        >
+        <div key={index} className="oneThematicMainDiv">
           <div className="ThematicHeaderTextDiv">
             <p className="headerText">{element.name}</p>
             <a
               href={"thematic/" + element.id}
               style={{ textDecoration: "none", alignSelf: "center" }}
             >
-              <ArrowForwardIcon
-                style={{ alignSelf: "center", color: "rgba(103, 80, 164, 1)" }}
-              />
+              <ArrowForwardIcon className="arrowIcon" />
             </a>
           </div>
           <div className="headerDiv">
@@ -107,6 +69,7 @@ export default function AllThematicPage() {
           </div>
         </div>
       ))}
+      <MapIconComponent />
     </div>
   );
 }
