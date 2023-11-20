@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Map } from "@pbe/react-yandex-maps";
 import { GeolocationControl } from "@pbe/react-yandex-maps";
 import { ZoomControl, Placemark } from "@pbe/react-yandex-maps";
+import Sheet, { SheetRef } from "react-modal-sheet";
+import { useState, useRef } from "react";
 
 interface IProp {
   width: string;
@@ -50,6 +52,10 @@ function YaMap({ width, height, zoomControl }: IProp) {
     ]);
   };
 
+  const [isOpen, setOpen] = useState(false);
+  const ref = useRef<SheetRef>();
+  const snapTo = (i: number) => ref.current?.snapTo(i);
+
   const options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -97,19 +103,43 @@ function YaMap({ width, height, zoomControl }: IProp) {
   }, []);
 
   return (
-    <Map
-      onClick={handleMapClick}
-      width={width}
-      height={height}
-      defaultState={{ center: [55.75, 37.57], zoom: 9 }}
-      state={mapState}
-    >
-      <GeolocationControl options={{ float: "left" }} />
-      {zoomControl && (
-        <ZoomControl options={{ position: { right: 5, top: 50 } }} />
-      )}
-      {placemarks}
-    </Map>
+    <>
+      <Map
+        onClick={handleMapClick}
+        width={width}
+        height={height}
+        defaultState={{ center: [55.75, 37.57], zoom: 9 }}
+        state={mapState}
+      >
+        <GeolocationControl options={{ float: "left" }} />
+        {zoomControl && (
+          <ZoomControl options={{ position: { right: 5, top: 50 } }} />
+        )}
+        {placemarks}
+      </Map>
+      <button onClick={() => setOpen(true)}>Open sheet</button>
+
+      {/* Opens to 400 since initial index is 1 */}
+      <Sheet
+        ref={ref}
+        isOpen={isOpen}
+        onClose={() => setOpen(false)}
+        snapPoints={[800, 600, 400, 100, 0]}
+        initialSnap={1}
+        onSnap={(snapIndex) =>
+          console.log("> Current snap point index:", snapIndex)
+        }
+      >
+        <Sheet.Container>
+          <Sheet.Content>
+            <button onClick={() => snapTo(0)}>Snap to index 0</button>
+            <button onClick={() => snapTo(1)}>Snap to index 1</button>
+            <button onClick={() => snapTo(2)}>Snap to index 2</button>
+            <button onClick={() => snapTo(3)}>Snap to index 3</button>
+          </Sheet.Content>
+        </Sheet.Container>
+      </Sheet>
+    </>
   );
 }
 
