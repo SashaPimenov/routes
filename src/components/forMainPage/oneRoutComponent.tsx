@@ -19,7 +19,7 @@ export default function OneRoutComponent({ id, title, description }: IProp) {
           <div className="card">
             <div className="headerCard">
               <div className={"characterRoute"}>
-                <div className={"routeTimeAndDistance mrouteTime"}>2 часа</div>
+                <div className={"routeTimeAndDistance routeTime"}>2 часа</div>
                 <div className={"routeTimeAndDistance routeDistance"}>
                   10 км
                 </div>

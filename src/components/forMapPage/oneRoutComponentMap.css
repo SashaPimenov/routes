@@ -1,22 +1,22 @@
-.oneRoute {
-  width: 170px;
+.oneRouteMap {
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   box-shadow: 0px 2px 4px 0px rgba(34, 40, 53, 0.04);
 }
 
-.oneRouteDiv {
-  width: 170px;
-  height: 188px;
+.oneRouteDivMap {
+  width: 122px;
+  height: 122px;
   border-radius: 8px 8px 0 0;
   background: #d9d9d9;
 }
 
-.card {
+.cardMap {
   display: flex;
-  width: 170px;
-  height: 144px;
+  width: 100%;
+  height: 122px;
   padding: 0px 12px;
   flex-direction: column;
   align-items: flex-start;
@@ -25,7 +25,7 @@
   background: var(--white, #fff);
 }
 
-.headerCard {
+.headerCardMap {
   display: flex;
   flex-direction: column;
   height: 188px;
@@ -33,7 +33,7 @@
   gap: 8px;
 }
 
-.headerCardText {
+.headerCardTextMap {
   color: black;
   margin: 0;
   padding-bottom: 0;
@@ -51,7 +51,7 @@
   text-overflow: ellipsis;
 }
 
-.footerCard {
+.footerCardMap {
   height: 144px;
   margin: 0;
   display: flex;
@@ -60,7 +60,7 @@
   align-self: stretch;
 }
 
-.footerCardText {
+.footerCardTextMap {
   margin: 0;
   flex: 1 0 0;
   color: var(--text, #333);
@@ -78,13 +78,14 @@
   text-overflow: ellipsis;
 }
 
-.characterRoute {
+.characterRouteMap {
   display: flex;
   flex-direction: row;
   column-gap: 5px;
+
 }
 
-.routeTimeAndDistance {
+.routeTimeAndDistanceMap {
   padding: 2px 8px;
   background-color: rgba(210, 231, 234, 1);
   border-radius: 20px;
@@ -95,18 +96,19 @@
   line-height: 16px;
   letter-spacing: 0.5px;
   text-align: left;
+
 }
 
-.routeTime {
+.routeTimeMap {
   background-color: rgba(210, 231, 234, 1);
 }
 
-.routeDistance {
+.routeDistanceMap {
   background-color: rgba(208, 188, 255, 1);
 }
 
-.oneRouteDivImage {
+.oneRouteDivImageMap {
   object-fit: cover;
-  width: 170px;
-  height: 188px;
+  width: 122px;
+  height: 122px;
 }
