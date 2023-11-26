@@ -7,7 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import OneRoutComponent from "../../components/forMainPage/oneRoutComponent";
 import AddIcon from "@mui/icons-material/Add";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import { MapIconComponent } from "../../components/forAllAndOneThematicPage/MapIconComponent/MapIconComponent";
 
 export default function MainPage() {
   const thematic = [
@@ -201,21 +201,40 @@ export default function MainPage() {
       </Swiper>
 
       <div className="cardDiv">
-        <div className="thematicRoutesTextDiv">
-          <p className="thematicRoutesText">Популярные места</p>
-        </div>
-        <div className="map">
-          <a href="/map" className="mainMapIcon">
-            <MapOutlinedIcon
-              sx={{
-                color: "white",
-              }}
-              fontSize="medium"
-            />
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "row",
+            gap: 16,
+            justifyContent: "space-between",
+          }}
+        >
+          <a href="/map" style={{ textDecoration: "none" }}>
+            <p className="thematicRoutesText">Популярные места</p>
           </a>
+          <Button
+            variant="outlined"
+            startIcon={<AddIcon />}
+            style={{
+              width: 122,
+              height: 32,
+              alignSelf: "center",
+              color: "rgba(103, 80, 164, 1)",
+              borderColor: "rgba(103, 80, 164, 1)",
+              borderRadius: 28,
+              textTransform: "none",
+            }}
+          >
+            Создать
+          </Button>
+        </div>
+
+        <div className="map">
           <YaMap width="90vw" height="25vh" zoomControl={false} />
         </div>
       </div>
+      <MapIconComponent />
     </div>
   );
 }

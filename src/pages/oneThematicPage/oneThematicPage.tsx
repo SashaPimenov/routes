@@ -16,7 +16,7 @@ export default function OneThematicPage() {
       <div className="bodyStyle">
         <div className="nameAndFilterDiv">
           <div style={{ flex: "0.8" }}>
-            <p style={{ fontSize: "24px", fontWeight: "500" }}>Свидания</p>
+            <p className="headerText">Свидания</p>
           </div>
           <div className="filterDiv">
             <SortOutlinedIcon sx={{ color: "#6750A4" }} />

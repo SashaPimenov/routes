@@ -1,9 +1,49 @@
 .input_map {
-    position: absolute;
-    z-index: 12;
-    background-color: white;
-    width: 80%;
-    left: 0;
-    right: 0;
-    margin: 50px auto 0 auto;
+  position: absolute;
+  z-index: 12;
+  background-color: white;
+  width: 80%;
+  left: 0;
+  right: 0;
+  margin: 50px auto 0 auto;
+}
+.ratingSheetText {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  margin: 0%;
+}
+
+.bottomIconDiv {
+  width: 32px;
+  height: 4px;
+  background: rgba(121, 116, 126, 0.4);
+  margin: 16px auto;
+  border-radius: 4px;
+}
+
+.ratingDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 7%;
+}
+
+.ratingButtonDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.ratingButtonText {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.1px;
+  color: white;
 }
