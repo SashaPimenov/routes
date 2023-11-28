@@ -17,7 +17,8 @@
 
 .bottomIconDiv {
   width: 32px;
-  height: 4px;
+  /*height: 4px;*/
+  padding: 2px;
   background: rgba(121, 116, 126, 0.4);
   margin: 16px auto;
   border-radius: 4px;

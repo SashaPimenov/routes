@@ -1,0 +1,110 @@
+.wrapperPlace {
+    padding: 15px;
+}
+
+.headerPlace {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.headerTextPlace {
+    display: flex;
+    flex-direction: column;
+}
+
+.headerGradePlace {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+}
+
+.namePlace {
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    text-align: left;
+
+}
+
+.titlePlace {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    letter-spacing: 0em;
+}
+
+.gradePlace {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 0em;
+}
+
+.tagsPlace {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 4px;
+    margin-top: 24px;
+}
+
+.tag {
+    height: 20px;
+    padding: 2px 8px 2px 8px;
+    border-radius: 20px;
+    background-color: rgba(210, 231, 234, 1);
+    display: flex;
+
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    align-items: center;
+}
+
+.addTag {
+    color: rgba(164, 59, 44, 1);
+    border: 1px solid rgba(164, 59, 44, 1);
+    background-color: white;
+}
+
+.imagePlaceDiv {
+    width: 100%;
+    height: 256px;
+    margin-top: 24px;
+}
+
+.imagePlace {
+    width: 100%;
+    height: 100%;
+}
+
+.textPlaceDiv {
+    margin-top: 24px;
+    width: 100%;
+}
+
+.textPlace {
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    text-align: left;
+    color: rgba(83, 67, 65, 1);
+}
+
+.addButton {
+    width: 100%;
+    padding: 14px;
+    background: rgba(164, 59, 44, 1);
+    color: white;
+    border-radius: 20px;
+    border: none;
+    margin: 24px 0;
+}

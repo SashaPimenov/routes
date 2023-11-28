@@ -1,36 +1,44 @@
+.wrapperOneRouteMap {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  margin: 0 15px;
+}
+
 .oneRouteMap {
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   box-shadow: 0px 2px 4px 0px rgba(34, 40, 53, 0.04);
+  margin: 8px 15px;
+  background-color: rgba(255, 248, 246, 1);
+  border: 1px solid rgba(216, 194, 190, 1);
+  border-radius: 8px;
 }
 
 .oneRouteDivMap {
   width: 122px;
   height: 122px;
   border-radius: 8px 8px 0 0;
-  background: #d9d9d9;
+  display: flex;
+  align-self: center;
 }
 
 .cardMap {
   display: flex;
-  width: 100%;
-  height: 122px;
-  padding: 0px 12px;
+  width: 238px;
+  height: 90px;
   flex-direction: column;
   align-items: flex-start;
   border-radius: 0 0 8px 8px;
-  box-sizing: border-box;
-  background: var(--white, #fff);
+  padding: 16px 0 16px 16px;
 }
 
 .headerCardMap {
   display: flex;
   flex-direction: column;
-  height: 188px;
-  padding: 12px 0 8px 0;
-  gap: 8px;
+  gap: 3px;
 }
 
 .headerCardTextMap {
@@ -39,10 +47,10 @@
   padding-bottom: 0;
   flex: 1 0 0;
   font-family: Arial;
-  font-size: 15px;
+  font-size: 16px;
   font-style: normal;
-  font-weight: 700;
-  line-height: 140%; /* 21px */
+  font-weight: 600;
+  /*line-height: 140%; !* 21px *!*/
 
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -52,7 +60,6 @@
 }
 
 .footerCardMap {
-  height: 144px;
   margin: 0;
   display: flex;
   padding: 0;
@@ -63,10 +70,10 @@
 .footerCardTextMap {
   margin: 0;
   flex: 1 0 0;
-  color: var(--text, #333);
+  color: rgba(119, 86, 81, 1);
   /* 15px */
   font-family: Arial;
-  font-size: 15px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 140%; /* 21px */
@@ -111,4 +118,5 @@
   object-fit: cover;
   width: 122px;
   height: 122px;
+  border-radius: 8px;
 }
