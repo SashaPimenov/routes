@@ -1,7 +1,7 @@
 import "./oneRoutComponent.css";
 
 interface IProp {
-  id: string;
+  id: number;
   title: string;
   description: string;
 }
@@ -14,6 +14,7 @@ export default function OneRoutComponent({ id, title, description }: IProp) {
             <img
               className={"oneRouteDivImage"}
               src={require("../../assets/ekb.jpg")}
+              alt="rout"
             />
           </div>
           <div className="card">

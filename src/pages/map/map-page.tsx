@@ -83,7 +83,7 @@ export default function MapPage() {
               <div></div>
             )}
             {personality.map((e, index) => (
-              <div style={{ marginTop: "10px" }}>
+              <div style={{ marginTop: "10px" }} key={index}>
                 <OneRoutComponentMap
                   title={e.title}
                   id={e.id}
@@ -138,8 +138,8 @@ export default function MapPage() {
                     width: "90%",
                     height: "40px",
                     alignSelf: "center",
-                    backgroundColor: "#A43B2C",
-                    borderColor: "#A43B2C",
+                    backgroundColor: "#304FD9",
+                    borderColor: "#304FD9",
                     borderRadius: 28,
                     textTransform: "none",
                   }}

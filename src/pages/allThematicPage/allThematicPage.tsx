@@ -4,8 +4,37 @@ import OneRoutComponent from "../../components/forMainPage/oneRoutComponent";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { MapIconComponent } from "../../components/forAllAndOneThematicPage/MapIconComponent/MapIconComponent";
 import { HeaderThematicComponent } from "../../components/forAllAndOneThematicPage/HeaderThematicComponent/HeaderThematicComponent";
+import { BAZE_URL } from "../../api/BAZE_URL";
+import { useEffect, useState } from "react";
 
 export default function AllThematicPage() {
+  const [thematicRoutes, setThematicRoutes] = useState([]);
+  const [isLoad, setIsLoad] = useState(true);
+  const [isError, setIsError] = useState(false);
+
+  const getData = async () => {
+    try {
+      const req = await fetch(`${BAZE_URL}/`, {
+        method: "GET",
+      });
+      const data = await req.json();
+      if (req.status >= 200 && req.status < 299) {
+        setThematicRoutes(data);
+      } else {
+        setIsError(true);
+      }
+    } catch (e) {
+      console.log(e);
+      setIsError(true);
+    } finally {
+      setIsLoad(false);
+    }
+  };
+
+  useEffect(() => {
+    // getData();
+  }, []);
+
   const thematic = [
     {
       name: "Свидания",
@@ -59,7 +88,7 @@ export default function AllThematicPage() {
               {element.routes.map((e, index) => (
                 <SwiperSlide key={index}>
                   <OneRoutComponent
-                    id={index.toString()}
+                    id={index}
                     title={"Семейный отдых на Плотинке"}
                     description={"Лорем ипсум долор сит амет, консект"}
                   />

@@ -19,15 +19,15 @@ export default function OneThematicPage() {
             <p className="headerText">Свидания</p>
           </div>
           <div className="filterDiv">
-            <SortOutlinedIcon sx={{ color: "#6750A4" }} />
-            <TuneOutlinedIcon sx={{ color: "#6750A4" }} />
+            <SortOutlinedIcon sx={{ color: "#304FD9" }} />
+            <TuneOutlinedIcon sx={{ color: "#304FD9" }} />
           </div>
         </div>
         <div className="routesGridDiv">
           {[1, 2, 3, 4, 5, 6].map((e, index) => (
             <OneRoutComponent
               key={index}
-              id="1"
+              id={1}
               title="Маршрут по стрит-арту"
               description="Лорем ипсум долор сит амет, консект"
             />
