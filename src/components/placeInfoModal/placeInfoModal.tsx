@@ -31,7 +31,11 @@ export default function PlaceInfoModal({ setOpenFunc }: IProp) {
       </div>
 
       <div className={"imagePlaceDiv"}>
-        <img src={require("../../assets/img.png")} className={"imagePlace"} />
+        <img
+          src={require("../../assets/ermitageForInfo.png")}
+          className={"imagePlace"}
+          alt="фото"
+        />
       </div>
 
       <div className={"textPlaceDiv"}>

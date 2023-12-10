@@ -7,11 +7,14 @@ import { useEffect, useState } from "react";
 import { BAZE_URL } from "../../api/BAZE_URL";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import image from "../../assets/ekb.jpg";
+import { RatingSheet } from "../../components/ratingSheet";
+import { OnePlaceComponent } from "../../components/onePlaceComponent";
 type Props = {};
 export const OneRoutPage = (props: Props) => {
   const [routInfo, setRoutInfo] = useState({});
   const [isLoad, setIsLoad] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const getData = async () => {
     try {
@@ -63,7 +66,10 @@ export const OneRoutPage = (props: Props) => {
               </p>
               <p style={{ margin: "0" }}>4 точки остановки</p>
             </div>
-            <div className="oneRoutHeaderRatingDiv">
+            <div
+              className="oneRoutHeaderRatingDiv"
+              onClick={() => setIsOpen(true)}
+            >
               <StarBorderIcon style={{ alignSelf: "center" }} />
               <div className={"namePlace gradePlace"}>4.8</div>
             </div>
@@ -91,25 +97,11 @@ export const OneRoutPage = (props: Props) => {
           <p className="headerText">Места в маршруте:</p>
           <div className="placesInRoutsDiv">
             {[1, 2, 3, 4].map((e, index) => (
-              <div key={index} className="onePlaceInRoutsDiv">
-                <div className="numberPlaceDiv">
-                  <div className="circleNumberDiv">
-                    <p>{index + 1}</p>
-                  </div>
-                </div>
-                <div className="infoPlaceDiv">
-                  <div className="headerInfoPlaceDiv">
-                    <p className="headerInfoPlaceText">Header</p>
-                  </div>
-                  <div className="imageInfoPlaceDiv">
-                    <img src={image} className="imageStyle" />
-                  </div>
-                </div>
-              </div>
+              <OnePlaceComponent key={index} numberPlace={index + 1} />
             ))}
           </div>
           <a
-            href="/map"
+            href="/routemap/1"
             className="goRoutButtonDiv"
             style={{ textDecoration: "none" }}
           >
@@ -129,6 +121,11 @@ export const OneRoutPage = (props: Props) => {
           </a>
         </>
       )}
+      <RatingSheet
+        value={isOpen}
+        setValue={setIsOpen}
+        label={"Как вам этот маршрут?"}
+      />
     </div>
   );
 };

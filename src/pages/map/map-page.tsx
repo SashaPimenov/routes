@@ -1,35 +1,35 @@
 import "./map-page.css";
 import YaMap from "../../components/YaMap";
 import Sheet, { SheetRef } from "react-modal-sheet";
-import React, { useRef, useState } from "react";
-import OneRoutComponentMap from "../../components/forMapPage/oneRoutComponentMap";
+import { useRef, useState } from "react";
+import OnePlaceComponentMap from "../../components/forMapPage/OnePlaceComponentMap";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Button, Rating } from "@mui/material";
 import PlaceInfoModal from "../../components/placeInfoModal/placeInfoModal";
+import { RatingSheet } from "../../components/ratingSheet";
 
 const personality = [
   {
-    title: "Семейный отдых на Плотинке",
+    title: "Эрмитаж - Урал",
     description: "Лорем ипсум долор сит амет, консект",
     id: 1,
   },
   {
-    title: "Маршрут по стрит-арту",
+    title: "Каменные палатки",
     description: "Лорем ипсум долор сит амет, консект",
     id: 2,
   },
   {
-    title: "Ology",
+    title: "Каменные палатки",
     description: "Galant",
     id: 3,
   },
   {
-    title: "Ology",
+    title: "Эрмитаж - Урал",
     description: "Galant",
     id: 4,
   },
   {
-    title: "Ology",
+    title: "Каменные палатки",
     description: "Galant",
     id: 5,
   },
@@ -39,20 +39,14 @@ export default function MapPage() {
   const [isOpen, setOpen] = useState(true);
   const [isOpen2, setOpen2] = useState(false);
   const [isOpen3, setOpen3] = useState(false);
-  const [ratingValue, setRatingValue] = useState<number | null>(0);
 
   const [pull, setPull] = useState(false);
   const ref = useRef<SheetRef>();
   const ref2 = useRef<SheetRef>();
-  const ref3 = useRef<SheetRef>();
-  const snapTo = (i: number) => ref.current?.snapTo(i);
 
   return (
     <>
-      <a
-        href={"/"}
-        style={{ position: "absolute", left: "10px", top: "50px", zIndex: 100 }}
-      >
+      <a href={"/"} className="backDiv">
         <ArrowBackIcon
           className="arrowIcon"
           sx={{ height: "40px", width: "40px" }}
@@ -84,7 +78,7 @@ export default function MapPage() {
             )}
             {personality.map((e, index) => (
               <div style={{ marginTop: "10px" }} key={index}>
-                <OneRoutComponentMap
+                <OnePlaceComponentMap
                   title={e.title}
                   id={e.id}
                   description={e.description}
@@ -109,53 +103,11 @@ export default function MapPage() {
           </Sheet.Content>
         </Sheet.Container>
       </Sheet>
-      <Sheet
-        ref={ref3}
-        isOpen={isOpen3}
-        onClose={() => setOpen3(false)}
-        snapPoints={[250, 0]}
-        initialSnap={0}
-      >
-        <Sheet.Container style={{ borderRadius: 30 }}>
-          <Sheet.Content>
-            <div className="bottomIconDiv"></div>
-            <div style={{ paddingLeft: "5%" }}>
-              <p className="ratingSheetText">Как вам это место?</p>
-              <div className="ratingDiv">
-                <Rating
-                  size="large"
-                  value={ratingValue}
-                  onChange={(event, newValue) => {
-                    setRatingValue(newValue);
-                  }}
-                />
-              </div>
-
-              <div className="ratingButtonDiv">
-                <Button
-                  variant="outlined"
-                  style={{
-                    width: "90%",
-                    height: "40px",
-                    alignSelf: "center",
-                    backgroundColor: "#304FD9",
-                    borderColor: "#304FD9",
-                    borderRadius: 28,
-                    textTransform: "none",
-                  }}
-                >
-                  <p
-                    className="ratingButtonText"
-                    onClick={() => setOpen3(false)}
-                  >
-                    Поставить оценку
-                  </p>
-                </Button>
-              </div>
-            </div>
-          </Sheet.Content>
-        </Sheet.Container>
-      </Sheet>
+      <RatingSheet
+        value={isOpen3}
+        setValue={setOpen3}
+        label={"Как вам это место?"}
+      />
     </>
   );
 }

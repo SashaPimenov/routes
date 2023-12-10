@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import "./oneRoutComponentMap.css";
+import React from "react";
+import "./onePlaceComponentMap.css";
 
 interface IProp {
   id: number;
@@ -8,7 +8,7 @@ interface IProp {
   setOpenFunc?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function OneRoutComponentMap({
+export default function OnePlaceComponentMap({
   id,
   title,
   description,
@@ -24,12 +24,7 @@ export default function OneRoutComponentMap({
           <div className="cardMap">
             <div className="headerCardMap">
               <div className={"characterRouteMap"}>
-                <div className={"routeTimeAndDistanceMap routeTimeMap"}>
-                  2 часа
-                </div>
-                <div className={"routeTimeAndDistanceMap routeDistanceMap"}>
-                  10 км
-                </div>
+                <div className={"tag"}>Музей</div>
               </div>
               <p className="headerCardTextMap">{title}</p>
             </div>
@@ -40,7 +35,8 @@ export default function OneRoutComponentMap({
           <div className="oneRouteDivMap">
             <img
               className={"oneRouteDivImageMap"}
-              src={require("../../assets/ekb.jpg")}
+              src={require("../../assets/ermitage.png")}
+              alt="фото"
             />
           </div>
         </div>
