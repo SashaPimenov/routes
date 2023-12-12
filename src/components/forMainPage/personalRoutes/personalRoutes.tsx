@@ -5,7 +5,6 @@ import { Button, Skeleton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useState } from "react";
 import { BAZE_URL } from "../../../api/BAZE_URL";
-import { Margin } from "@mui/icons-material";
 
 export const PersonalRoutes = () => {
   const personality = [
@@ -37,7 +36,7 @@ export const PersonalRoutes = () => {
   ];
 
   const [personalityRoutes, setPersonalityRoutes] = useState([]);
-  const [isLoad, setIsLoad] = useState(true);
+  const [isLoad, setIsLoad] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const getData = async () => {

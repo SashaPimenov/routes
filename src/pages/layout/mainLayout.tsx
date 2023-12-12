@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-
+import "./mainLayout.css";
 export const MainLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
