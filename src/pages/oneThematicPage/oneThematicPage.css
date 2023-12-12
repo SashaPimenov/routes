@@ -31,3 +31,57 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.sheet_wrapper_oneThematic {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet_header {
+  font-family: Arial;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0em;
+  text-align: left;
+
+}
+
+.buttons_oneThematic {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.button_oneThematic {
+  align-self: flex-start;
+  text-transform: none;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
+
+.cancel_button_oneThematic {
+  border-radius: 200px;
+}
+
+.filter_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.sheet_wrapper_oneThematic p {
+  margin-bottom: 8px;
+  margin-top: 0;
+  font-size: 20px;
+  font-weight: 350;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+
+}

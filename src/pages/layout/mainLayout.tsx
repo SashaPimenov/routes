@@ -11,10 +11,10 @@ export const MainLayout = () => {
     }
   }, [location.pathname, navigate]);
 
-  const token = localStorage.getItem("token");
-  if (!token) {
-    return <Navigate to={"/auth"} replace />;
-  }
+  // const token = localStorage.getItem("token");
+  // if (!token) {
+  //   return <Navigate to={"/auth"} replace />;
+  // }
 
   return (
     <div className="main">

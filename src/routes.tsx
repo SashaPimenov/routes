@@ -48,8 +48,8 @@ export const routes = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "*",
-    element: <Navigate to={"/auth"} replace />,
-  },
+  // {
+  //   path: "*",
+  //   element: <Navigate to={"/auth"} replace />,
+  // },
 ]);
