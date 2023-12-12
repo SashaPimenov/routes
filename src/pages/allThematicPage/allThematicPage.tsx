@@ -6,6 +6,7 @@ import { MapIconComponent } from "../../components/forAllAndOneThematicPage/MapI
 import { HeaderThematicComponent } from "../../components/forAllAndOneThematicPage/HeaderThematicComponent/HeaderThematicComponent";
 import { BAZE_URL } from "../../api/BAZE_URL";
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 export default function AllThematicPage() {
   const [thematicRoutes, setThematicRoutes] = useState([]);
@@ -99,6 +100,7 @@ export default function AllThematicPage() {
         </div>
       ))}
       <MapIconComponent />
+      <Outlet />
     </div>
   );
 }

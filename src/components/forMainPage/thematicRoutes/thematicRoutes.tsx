@@ -60,7 +60,7 @@ export const ThematicRoutes = () => {
         <div className="thematicRoutesTextDiv">
           <p className="thematicRoutesText">Тематические маршруты</p>
           <a
-            href="/allThematic"
+            href="/thematics"
             style={{ textDecoration: "none", alignSelf: "center" }}
           >
             <ArrowForwardIcon
