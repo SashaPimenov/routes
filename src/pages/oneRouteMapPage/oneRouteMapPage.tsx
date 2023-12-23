@@ -13,7 +13,7 @@ export const OneRouteMapPage = () => {
   const ref = useRef<SheetRef>();
   return (
     <>
-      <a href={"/"} className="backDiv">
+      <a href={"/main"} className="backDiv">
         <ArrowBackIcon
           className="arrowIcon"
           sx={{ height: "30px", width: "30px" }}

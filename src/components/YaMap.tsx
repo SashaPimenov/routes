@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Map } from "@pbe/react-yandex-maps";
 import { GeolocationControl } from "@pbe/react-yandex-maps";
 import { ZoomControl, Placemark } from "@pbe/react-yandex-maps";
-import Sheet, { SheetRef } from "react-modal-sheet";
 import { useState, useRef } from "react";
+import placemarkIcon from "../assets/ekb.jpg";
 
 interface IProp {
   width: string;
@@ -13,19 +13,123 @@ interface IProp {
 
 function YaMap({ width, height, zoomControl }: IProp) {
   const placemarkes = [
-    <Placemark geometry={[56.849408169094694, 60.62560809884134]} key={1} />,
-    <Placemark geometry={[56.849408169094694, 60.62560809884134]} key={2} />,
-    <Placemark geometry={[60.61393512520857, 56.8392482247621]} key={3} />,
-    <Placemark geometry={[56.82908551131333, 60.57513965401714]} key={4} />,
-    <Placemark geometry={[56.806654942814895, 60.65444721016947]} key={5} />,
-    <Placemark geometry={[56.795918178259114, 60.59711231026716]} key={6} />,
-    <Placemark geometry={[56.78612054209023, 60.65101398263044]} key={7} />,
-    <Placemark geometry={[56.82209922508924, 60.55053098132779]} key={8} />,
-    <Placemark geometry={[56.86476209736371, 60.55907382691396]} key={9} />,
-    <Placemark geometry={[56.85987263303157, 60.52474155152334]} key={10} />,
-    <Placemark geometry={[56.85987263303157, 60.68026675904286]} key={11} />,
-    <Placemark geometry={[56.865890344157044, 60.63082828248034]} key={12} />,
-    <Placemark geometry={[56.890139385800495, 60.54156436646476]} key={13} />,
+    <Placemark
+      geometry={[56.849408169094694, 60.62560809884134]}
+      options={{
+        iconLayout: "default#image",
+        iconImageHref: placemarkIcon,
+        iconImageSize: [32, 32],
+      }}
+      key={1}
+    />,
+    <Placemark
+      geometry={[56.849408169094694, 60.62560809884134]}
+      options={{
+        iconLayout: "default#image",
+        iconImageHref: placemarkIcon,
+        iconImageSize: [32, 32],
+      }}
+      key={2}
+    />,
+    <Placemark
+      geometry={[60.61393512520857, 56.8392482247621]}
+      options={{
+        iconLayout: "default#image",
+        iconImageHref: placemarkIcon,
+        iconImageSize: [32, 32],
+      }}
+      key={3}
+    />,
+    <Placemark
+      geometry={[56.82908551131333, 60.57513965401714]}
+      options={{
+        iconLayout: "default#image",
+        iconImageHref: placemarkIcon,
+        iconImageSize: [32, 32],
+      }}
+      key={4}
+    />,
+    <Placemark
+      geometry={[56.806654942814895, 60.65444721016947]}
+      options={{
+        iconLayout: "default#image",
+        iconImageHref: placemarkIcon,
+        iconImageSize: [32, 32],
+      }}
+      key={5}
+    />,
+    <Placemark
+      geometry={[56.795918178259114, 60.59711231026716]}
+      options={{
+        iconLayout: "default#image",
+        iconImageHref: placemarkIcon,
+        iconImageSize: [32, 32],
+      }}
+      key={6}
+    />,
+    <Placemark
+      geometry={[56.78612054209023, 60.65101398263044]}
+      options={{
+        iconLayout: "default#image",
+        iconImageHref: placemarkIcon,
+        iconImageSize: [32, 32],
+      }}
+      key={7}
+    />,
+    <Placemark
+      geometry={[56.82209922508924, 60.55053098132779]}
+      options={{
+        iconLayout: "default#image",
+        iconImageHref: placemarkIcon,
+        iconImageSize: [32, 32],
+      }}
+      key={8}
+    />,
+    <Placemark
+      geometry={[56.86476209736371, 60.55907382691396]}
+      options={{
+        iconLayout: "default#image",
+        iconImageHref: placemarkIcon,
+        iconImageSize: [32, 32],
+      }}
+      key={9}
+    />,
+    <Placemark
+      geometry={[56.85987263303157, 60.52474155152334]}
+      options={{
+        iconLayout: "default#image",
+        iconImageHref: placemarkIcon,
+        iconImageSize: [32, 32],
+      }}
+      key={10}
+    />,
+    <Placemark
+      geometry={[56.85987263303157, 60.68026675904286]}
+      options={{
+        iconLayout: "default#image",
+        iconImageHref: placemarkIcon,
+        iconImageSize: [32, 32],
+      }}
+      key={11}
+    />,
+    <Placemark
+      geometry={[56.865890344157044, 60.63082828248034]}
+      options={{
+        iconLayout: "default#image",
+        iconImageHref: placemarkIcon,
+        iconImageSize: [32, 32],
+      }}
+      key={12}
+    />,
+    <Placemark
+      geometry={[56.890139385800495, 60.54156436646476]}
+      options={{
+        iconLayout: "default#image",
+        iconImageHref: placemarkIcon,
+        iconImageSize: [32, 32],
+      }}
+      key={13}
+    />,
   ];
 
   const [placemarks, setPlacemarks] = useState(placemarkes);
@@ -38,15 +142,16 @@ function YaMap({ width, height, zoomControl }: IProp) {
   const handleMapClick = (event: any) => {
     const coordinates = event.get("coords");
     const placemarkId = `placemark-${placemarks.length}`;
-
     setPlacemarks([
       ...placemarks,
       <Placemark
         key={placemarkId}
         geometry={coordinates}
-        properties={{
-          balloonContentBody: `Метка ${placemarks.length}`,
-          hintContent: `Метка ${placemarks.length}`,
+        options={{
+          iconLayout: "default#image",
+          iconImageHref:
+            "https://crowdbotics.ghost.io/content/images/2019/06/React-Event-Listeners.png",
+          iconImageSize: [32, 32],
         }}
       />,
     ]);

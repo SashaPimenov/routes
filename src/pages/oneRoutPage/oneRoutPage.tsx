@@ -41,7 +41,7 @@ export const OneRoutPage = (props: Props) => {
   return (
     <div className="mainDivOneRoutPage">
       <HeaderThematicComponent
-        route={"/allThematic"}
+        route={"/thematics"}
         label={"Описание маршрута"}
       />
       {isLoad ? (

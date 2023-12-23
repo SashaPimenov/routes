@@ -46,7 +46,7 @@ export default function MapPage() {
 
   return (
     <>
-      <a href={"/"} className="backDiv">
+      <a href={"/main"} className="backDiv">
         <ArrowBackIcon
           className="arrowIcon"
           sx={{ height: "40px", width: "40px" }}
