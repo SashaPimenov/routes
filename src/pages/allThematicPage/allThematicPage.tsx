@@ -7,6 +7,8 @@ import { HeaderThematicComponent } from "../../components/forAllAndOneThematicPa
 import { BAZE_URL } from "../../api/BAZE_URL";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import { ThematicRoutesAllPage } from "../../components/forAllAndOneThematicPage/ThematicRoutesAllPage/ThematicRoutesAllPage";
+import axios from "axios";
 
 export default function AllThematicPage() {
   const [thematicRoutes, setThematicRoutes] = useState([]);
@@ -15,12 +17,13 @@ export default function AllThematicPage() {
 
   const getData = async () => {
     try {
-      const req = await fetch(`${BAZE_URL}/`, {
-        method: "GET",
+      const req = await axios.get(`${BAZE_URL}api/theme/all`, {
+        withCredentials: true,
       });
-      const data = await req.json();
+      const data = await req.data;
       if (req.status >= 200 && req.status < 299) {
-        setThematicRoutes(data);
+        setThematicRoutes(data.list);
+        console.log(data);
       } else {
         setIsError(true);
       }
@@ -33,42 +36,14 @@ export default function AllThematicPage() {
   };
 
   useEffect(() => {
-    // getData();
+    getData();
   }, []);
-
-  const thematic = [
-    {
-      name: "Свидания",
-      id: "1",
-      routes: [1, 2, 3, 4, 5],
-    },
-    {
-      name: "Семейный отдых",
-      id: "2",
-      routes: [1, 2, 3, 4, 5],
-    },
-    {
-      name: "Тема 3",
-      id: "3",
-      routes: [1, 2, 3, 4, 5],
-    },
-    {
-      name: "Тема 4",
-      id: "4",
-      routes: [1, 2, 3, 4, 5],
-    },
-    {
-      name: "Тема 5",
-      id: "5",
-      routes: [1, 2, 3, 4, 5],
-    },
-  ];
 
   return (
     <div className="wrapper_main">
       <HeaderThematicComponent route={"/"} label={"Тематические маршруты"} />
 
-      {thematic.map((element, index) => (
+      {thematicRoutes.map((element: any, index) => (
         <div key={index} className="oneThematicMainDiv">
           <div className="ThematicHeaderTextDiv">
             <p className="headerText">{element.name}</p>
@@ -80,22 +55,7 @@ export default function AllThematicPage() {
             </a>
           </div>
           <div className="headerDiv">
-            <Swiper
-              spaceBetween={10}
-              slidesPerView={2}
-              onSlideChange={() => console.log("slide change")}
-              onSwiper={(swiper: any) => console.log(swiper)}
-            >
-              {element.routes.map((e, index) => (
-                <SwiperSlide key={index}>
-                  <OneRoutComponent
-                    id={index}
-                    title={"Семейный отдых на Плотинке"}
-                    description={"Лорем ипсум долор сит амет, консект"}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            <ThematicRoutesAllPage id={element.id} />
           </div>
         </div>
       ))}

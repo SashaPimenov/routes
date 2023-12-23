@@ -1,29 +1,35 @@
 import "./oneRoutPage.css";
 import { HeaderThematicComponent } from "../../components/forAllAndOneThematicPage/HeaderThematicComponent/HeaderThematicComponent";
-import { MapIconComponent } from "../../components/forAllAndOneThematicPage/MapIconComponent/MapIconComponent";
-import YaMap from "../../components/YaMap";
 import { Button, CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
 import { BAZE_URL } from "../../api/BAZE_URL";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import image from "../../assets/ekb.jpg";
 import { RatingSheet } from "../../components/ratingSheet";
 import { OnePlaceComponent } from "../../components/onePlaceComponent";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import YaMapOneRoute from "../../components/YaMapOneRoute";
+
 type Props = {};
 export const OneRoutPage = (props: Props) => {
-  const [routInfo, setRoutInfo] = useState({});
-  const [isLoad, setIsLoad] = useState(false);
+  const [routInfo, setRoutInfo] = useState<any>({});
+  const [isLoad, setIsLoad] = useState(true);
   const [isError, setIsError] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  const { id } = useParams();
+
   const getData = async () => {
     try {
-      const req = await fetch(`${BAZE_URL}/`, {
-        method: "GET",
+      const req = await axios.get(`${BAZE_URL}api/journey/short/${id}`, {
+        withCredentials: true,
       });
-      const data = await req.json();
+      const data = await req.data;
+      console.log(data);
+
       if (req.status >= 200 && req.status < 299) {
         setRoutInfo(data);
+        console.log(data);
       } else {
         setIsError(true);
       }
@@ -36,7 +42,7 @@ export const OneRoutPage = (props: Props) => {
   };
 
   useEffect(() => {
-    // getData();
+    getData();
   }, []);
   return (
     <div className="mainDivOneRoutPage">
@@ -62,9 +68,11 @@ export const OneRoutPage = (props: Props) => {
           <div className="oneRoutHeaderTextDiv">
             <div className="oneRoutHeaderNameDiv">
               <p className="headerText" style={{ margin: "0" }}>
-                Маршрут по стрит-арту
+                {routInfo.name}
               </p>
-              <p style={{ margin: "0" }}>4 точки остановки</p>
+              <p style={{ margin: "0" }}>
+                {routInfo.placemarks.length} точки остановки
+              </p>
             </div>
             <div
               className="oneRoutHeaderRatingDiv"
@@ -75,18 +83,17 @@ export const OneRoutPage = (props: Props) => {
             </div>
           </div>
           <div className="mapOneRoutPage">
-            <YaMap width="90vw" height="23vh" zoomControl={false} />
+            <YaMapOneRoute
+              placemarks={routInfo.placemarks}
+              width="90vw"
+              height="23vh"
+              zoomControl={true}
+            />
           </div>
 
           <div className="descriptionAndTagsDiv">
             <div className="descriptionDiv">
-              <p className="descriptionText">
-                Однозначно, тщательные исследования конкурентов набирают
-                популярность среди определенных слоев населения, а значит,
-                должны быть указаны как претенденты на роль ключевых факторов.
-                Как принято считать, базовые сценарии поведения пользователей
-                объективно рассмотрены соответствующими инстанциями!
-              </p>
+              <p className="descriptionText">{routInfo.description}</p>
             </div>
             <div className="tagsDiv">
               <div className={"tag"}>4 часа</div>
@@ -96,8 +103,13 @@ export const OneRoutPage = (props: Props) => {
 
           <p className="headerText">Места в маршруте:</p>
           <div className="placesInRoutsDiv">
-            {[1, 2, 3, 4].map((e, index) => (
-              <OnePlaceComponent key={index} numberPlace={index + 1} />
+            {routInfo.placemarks.map((e: any, index: any) => (
+              <OnePlaceComponent
+                placemarkAttachmentId={e.attachmentId}
+                name={e.name}
+                key={index}
+                numberPlace={index + 1}
+              />
             ))}
           </div>
           <a

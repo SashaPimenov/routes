@@ -4,6 +4,8 @@ import { GeolocationControl } from "@pbe/react-yandex-maps";
 import { ZoomControl, Placemark } from "@pbe/react-yandex-maps";
 import { useState, useRef } from "react";
 import placemarkIcon from "../assets/ekb.jpg";
+import axios from "axios";
+import { BAZE_URL } from "../api/BAZE_URL";
 
 interface IProp {
   width: string;
@@ -12,150 +14,10 @@ interface IProp {
 }
 
 function YaMap({ width, height, zoomControl }: IProp) {
-  const placemarkes = [
-    <Placemark
-      geometry={[56.849408169094694, 60.62560809884134]}
-      options={{
-        iconLayout: "default#image",
-        iconImageHref: placemarkIcon,
-        iconImageSize: [32, 32],
-      }}
-      key={1}
-    />,
-    <Placemark
-      geometry={[56.849408169094694, 60.62560809884134]}
-      options={{
-        iconLayout: "default#image",
-        iconImageHref: placemarkIcon,
-        iconImageSize: [32, 32],
-      }}
-      key={2}
-    />,
-    <Placemark
-      geometry={[60.61393512520857, 56.8392482247621]}
-      options={{
-        iconLayout: "default#image",
-        iconImageHref: placemarkIcon,
-        iconImageSize: [32, 32],
-      }}
-      key={3}
-    />,
-    <Placemark
-      geometry={[56.82908551131333, 60.57513965401714]}
-      options={{
-        iconLayout: "default#image",
-        iconImageHref: placemarkIcon,
-        iconImageSize: [32, 32],
-      }}
-      key={4}
-    />,
-    <Placemark
-      geometry={[56.806654942814895, 60.65444721016947]}
-      options={{
-        iconLayout: "default#image",
-        iconImageHref: placemarkIcon,
-        iconImageSize: [32, 32],
-      }}
-      key={5}
-    />,
-    <Placemark
-      geometry={[56.795918178259114, 60.59711231026716]}
-      options={{
-        iconLayout: "default#image",
-        iconImageHref: placemarkIcon,
-        iconImageSize: [32, 32],
-      }}
-      key={6}
-    />,
-    <Placemark
-      geometry={[56.78612054209023, 60.65101398263044]}
-      options={{
-        iconLayout: "default#image",
-        iconImageHref: placemarkIcon,
-        iconImageSize: [32, 32],
-      }}
-      key={7}
-    />,
-    <Placemark
-      geometry={[56.82209922508924, 60.55053098132779]}
-      options={{
-        iconLayout: "default#image",
-        iconImageHref: placemarkIcon,
-        iconImageSize: [32, 32],
-      }}
-      key={8}
-    />,
-    <Placemark
-      geometry={[56.86476209736371, 60.55907382691396]}
-      options={{
-        iconLayout: "default#image",
-        iconImageHref: placemarkIcon,
-        iconImageSize: [32, 32],
-      }}
-      key={9}
-    />,
-    <Placemark
-      geometry={[56.85987263303157, 60.52474155152334]}
-      options={{
-        iconLayout: "default#image",
-        iconImageHref: placemarkIcon,
-        iconImageSize: [32, 32],
-      }}
-      key={10}
-    />,
-    <Placemark
-      geometry={[56.85987263303157, 60.68026675904286]}
-      options={{
-        iconLayout: "default#image",
-        iconImageHref: placemarkIcon,
-        iconImageSize: [32, 32],
-      }}
-      key={11}
-    />,
-    <Placemark
-      geometry={[56.865890344157044, 60.63082828248034]}
-      options={{
-        iconLayout: "default#image",
-        iconImageHref: placemarkIcon,
-        iconImageSize: [32, 32],
-      }}
-      key={12}
-    />,
-    <Placemark
-      geometry={[56.890139385800495, 60.54156436646476]}
-      options={{
-        iconLayout: "default#image",
-        iconImageHref: placemarkIcon,
-        iconImageSize: [32, 32],
-      }}
-      key={13}
-    />,
-  ];
-
-  const [placemarks, setPlacemarks] = useState(placemarkes);
-  const [userPlacemarks, setUserPlacemarks] = useState([]);
   const [mapState, setMapState] = useState<any>({
     center: [60.4626680961914, 56.7711281543],
     zoom: 9,
   });
-
-  const handleMapClick = (event: any) => {
-    const coordinates = event.get("coords");
-    const placemarkId = `placemark-${placemarks.length}`;
-    setPlacemarks([
-      ...placemarks,
-      <Placemark
-        key={placemarkId}
-        geometry={coordinates}
-        options={{
-          iconLayout: "default#image",
-          iconImageHref:
-            "https://crowdbotics.ghost.io/content/images/2019/06/React-Event-Listeners.png",
-          iconImageSize: [32, 32],
-        }}
-      />,
-    ]);
-  };
 
   const options = {
     enableHighAccuracy: true,
@@ -165,7 +27,6 @@ function YaMap({ width, height, zoomControl }: IProp) {
   const success = async (pos: any) => {
     const crd = pos.coords;
     setMapState({ center: [crd.latitude, crd.longitude], zoom: 9 });
-    console.log(mapState);
 
     // console.log("Your current position is:");
     // console.log(`Latitude : ${crd.latitude}`);
@@ -184,7 +45,6 @@ function YaMap({ width, height, zoomControl }: IProp) {
       navigator.permissions
         .query({ name: "geolocation" })
         .then(function (result) {
-          console.log("result", result);
           if (result.state === "granted") {
             const a = navigator.geolocation.getCurrentPosition(
               success,
@@ -203,10 +63,78 @@ function YaMap({ width, height, zoomControl }: IProp) {
     }
   }, []);
 
+  const [routePlacemarks, setRoutePlacemarks] = useState<any>([]);
+  const [places, setPlaces] = useState<any>([]);
+
+  useEffect(() => {
+    getPlaces();
+  }, []);
+
+  const getPlaces = async () => {
+    const req = await axios.get(
+      `${BAZE_URL}api/placemark/nearest?latitude=${mapState.center[0]}&longitude=${mapState.center[1]}`,
+      {
+        withCredentials: true,
+      }
+    );
+    const data = await req.data;
+    if (req.status >= 200 && req.status < 299) {
+      setPlaces(data.list);
+      console.log(data.list);
+      data.list.map((e: any) => getImages(e));
+    }
+  };
+
+  const getImages = async (placemark: any) => {
+    try {
+      const req = await axios.get(
+        `${BAZE_URL}api/attachment/${placemark.attachmentId}`,
+        {
+          responseType: "blob",
+          withCredentials: true,
+        }
+      );
+      const data = await req.data;
+      if (req.status >= 200 && req.status < 299) {
+        try {
+          const imageUrl = URL.createObjectURL(data);
+          let element = (
+            <Placemark
+              geometry={[placemark.longitude, placemark.latitude]}
+              options={{
+                iconLayout: "default#image",
+                iconImageHref: imageUrl,
+                iconImageSize: [32, 32],
+              }}
+            />
+          );
+          let placemarks = routePlacemarks;
+          placemarks.push(element);
+          setRoutePlacemarks(placemarks);
+        } catch {
+          let element = (
+            <Placemark
+              geometry={[placemark.longitude, placemark.latitude]}
+              options={{
+                iconLayout: "default#image",
+                iconImageHref: placemarkIcon,
+                iconImageSize: [32, 32],
+              }}
+            />
+          );
+          let placemarks = routePlacemarks;
+          placemarks.push(element);
+          setRoutePlacemarks(placemarks);
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
       <Map
-        onClick={handleMapClick}
         width={width}
         height={height}
         defaultState={{ center: [55.75, 37.57], zoom: 9 }}
@@ -216,7 +144,7 @@ function YaMap({ width, height, zoomControl }: IProp) {
         {zoomControl && (
           <ZoomControl options={{ position: { right: 5, top: 50 } }} />
         )}
-        {placemarks}
+        {routePlacemarks}
       </Map>
     </>
   );

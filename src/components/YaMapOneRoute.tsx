@@ -1,20 +1,24 @@
 import React, { useEffect } from "react";
-import { Map } from "@pbe/react-yandex-maps";
+import { Map, Placemark } from "@pbe/react-yandex-maps";
 import { GeolocationControl } from "@pbe/react-yandex-maps";
 import { ZoomControl } from "@pbe/react-yandex-maps";
 import { useState } from "react";
+import axios from "axios";
+import { BAZE_URL } from "../api/BAZE_URL";
 
 interface IProp {
   width: string;
   height: string;
   zoomControl: boolean;
+  placemarks: any;
 }
 
-function YaMapOneRoute({ width, height, zoomControl }: IProp) {
+function YaMapOneRoute({ width, height, zoomControl, placemarks }: IProp) {
   const [mapState, setMapState] = useState<any>({
     center: [60.4626680961914, 56.7711281543],
     zoom: 9,
   });
+  const [routePlacemarks, setRoutePlacemarks] = useState<any>([]);
 
   const options = {
     enableHighAccuracy: true,
@@ -25,11 +29,6 @@ function YaMapOneRoute({ width, height, zoomControl }: IProp) {
     const crd = pos.coords;
     setMapState({ center: [crd.latitude, crd.longitude], zoom: 9 });
     console.log(mapState);
-
-    // console.log("Your current position is:");
-    // console.log(`Latitude : ${crd.latitude}`);
-    // console.log(`Longitude: ${crd.longitude}`);
-    // console.log(`More or less ${crd.accuracy} meters.`);
   };
 
   function errors(err: any) {
@@ -62,6 +61,43 @@ function YaMapOneRoute({ width, height, zoomControl }: IProp) {
     }
   }, []);
 
+  useEffect(() => {
+    placemarks.map((e: any) => {
+      getData(e);
+    });
+  });
+
+  const getData = async (placemark: any) => {
+    try {
+      const req = await axios.get(
+        `${BAZE_URL}api/attachment/${placemark.attachmentId}`,
+        {
+          responseType: "blob",
+          withCredentials: true,
+        }
+      );
+      const data = await req.data;
+      if (req.status >= 200 && req.status < 299) {
+        const imageUrl = URL.createObjectURL(data);
+        let element = (
+          <Placemark
+            geometry={[placemark.longitude, placemark.latitude]}
+            options={{
+              iconLayout: "default#image",
+              iconImageHref: imageUrl,
+              iconImageSize: [32, 32],
+            }}
+          />
+        );
+        placemarks = routePlacemarks;
+        placemarks.push(element);
+        setRoutePlacemarks(placemarks);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
       <Map
@@ -74,6 +110,7 @@ function YaMapOneRoute({ width, height, zoomControl }: IProp) {
         {zoomControl && (
           <ZoomControl options={{ position: { right: 5, top: 50 } }} />
         )}
+        {routePlacemarks}
       </Map>
     </>
   );

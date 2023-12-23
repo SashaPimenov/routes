@@ -4,6 +4,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useEffect, useState } from "react";
 import { BAZE_URL } from "../../../api/BAZE_URL";
 import { Skeleton } from "@mui/material";
+import axios from "axios";
 
 export const ThematicRoutes = () => {
   const [thematicRoutes, setThematicRoutes] = useState([]);
@@ -12,12 +13,13 @@ export const ThematicRoutes = () => {
 
   const getData = async () => {
     try {
-      const req = await fetch(`${BAZE_URL}/`, {
-        method: "GET",
+      const req = await axios.get(`${BAZE_URL}api/theme/all`, {
+        withCredentials: true,
       });
-      const data = await req.json();
+      const data = await req.data;
       if (req.status >= 200 && req.status < 299) {
-        setThematicRoutes(data);
+        setThematicRoutes(data.list);
+        console.log(data);
       } else {
         setIsError(true);
       }
@@ -30,30 +32,9 @@ export const ThematicRoutes = () => {
   };
 
   useEffect(() => {
-    // getData();
+    getData();
   }, []);
-  const thematic = [
-    {
-      name: "Для свидания",
-      id: 1,
-    },
-    {
-      name: "Погулять",
-      id: 2,
-    },
-    {
-      name: "Для свидания",
-      id: 3,
-    },
-    {
-      name: "Для свидания",
-      id: 4,
-    },
-    {
-      name: "Для свидания",
-      id: 5,
-    },
-  ];
+
   return (
     <>
       <div className="thematicRoutes">
@@ -77,7 +58,7 @@ export const ThematicRoutes = () => {
                 <Skeleton variant="rounded" width={"165px"} height={"100px"} />
               </SwiperSlide>
             ))
-          : thematic.map((e, index) => (
+          : thematicRoutes.map((e: any, index) => (
               <SwiperSlide key={index}>
                 <a href={"thematic/" + e.id} style={{ textDecoration: "none" }}>
                   <div className="oneThematicRout">

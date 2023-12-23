@@ -127,6 +127,7 @@
 
 .imageInfoPlaceDiv {
   flex: 0.3;
+  max-width: 40%;
   height: 100%;
 }
 

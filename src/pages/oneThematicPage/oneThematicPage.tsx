@@ -4,12 +4,15 @@ import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
 import { MapIconComponent } from "../../components/forAllAndOneThematicPage/MapIconComponent/MapIconComponent";
 import { HeaderThematicComponent } from "../../components/forAllAndOneThematicPage/HeaderThematicComponent/HeaderThematicComponent";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Sheet, { SheetRef } from "react-modal-sheet";
 import PlaceInfoModal from "../../components/placeInfoModal/placeInfoModal";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import { BAZE_URL } from "../../api/BAZE_URL";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function OneThematicPage() {
   const [isOpenSort, setOpenSort] = useState(false);
@@ -25,6 +28,36 @@ export default function OneThematicPage() {
   const handleClickFilter = () => {
     setOpenFilter(true);
   };
+
+  const [thematicRoutes, setThematicRoutes] = useState([]);
+  const [isLoad, setIsLoad] = useState(true);
+  const [isError, setIsError] = useState(false);
+
+  const { id } = useParams();
+
+  const getData = async () => {
+    try {
+      const req = await axios.get(`${BAZE_URL}api/journey/all?themeId=${id}`, {
+        withCredentials: true,
+      });
+      const data = await req.data;
+      if (req.status >= 200 && req.status < 299) {
+        setThematicRoutes(data.list);
+        console.log(data);
+      } else {
+        setIsError(true);
+      }
+    } catch (e) {
+      console.log(e);
+      setIsError(true);
+    } finally {
+      setIsLoad(false);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <>
@@ -49,12 +82,13 @@ export default function OneThematicPage() {
             </div>
           </div>
           <div className="routesGridDiv">
-            {[1, 2, 3, 4, 5, 6].map((e, index) => (
+            {thematicRoutes.map((e: any, index) => (
               <OneRoutComponent
                 key={index}
-                id={1}
-                title="Маршрут по стрит-арту"
-                description="Лорем ипсум долор сит амет, консект"
+                placemarkAttachmentId={e.placemarkAttachmentId}
+                description={e.description}
+                name={e.name}
+                id={e.id}
               />
             ))}
           </div>
