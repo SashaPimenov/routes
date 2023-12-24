@@ -80,7 +80,6 @@ function YaMap({ width, height, zoomControl }: IProp) {
     const data = await req.data;
     if (req.status >= 200 && req.status < 299) {
       setPlaces(data.list);
-      console.log(data.list);
       data.list.map((e: any) => getImages(e));
     }
   };
