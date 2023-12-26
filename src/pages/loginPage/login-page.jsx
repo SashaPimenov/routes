@@ -51,8 +51,8 @@ export default function LoginPage() {
 
   return (
     <div className="wrapper_login">
+        <img className={'image_logo'} src={require('../../assets/logo.png')}/>
       <div className={"login_form"}>
-        LOGIN
         <TextField
           required
           id="outlined-required"
@@ -80,7 +80,7 @@ export default function LoginPage() {
             label="Password"
           />
         </FormControl>
-        <Button variant="contained" onClick={() => submit()}>
+        <Button style={{borderRadius: 10}} variant="contained" onClick={() => submit()}>
           Войти
         </Button>
       </div>
